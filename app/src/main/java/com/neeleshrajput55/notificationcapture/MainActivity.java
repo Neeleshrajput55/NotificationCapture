@@ -1,40 +1,37 @@
-package com.yourname.notificationcapture;
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourname.notificationcapture">
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.Settings;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-public class MainActivity extends AppCompatActivity {
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Notification Capture"
+        android:theme="@style/AppTheme">
+        
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    private static final int REQUEST_CODE_NOTIFICATION_ACCESS = 1001;
-    private TextView statusText;
-    private Button enableButton;
+        <service
+            android:name=".NotificationService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        statusText = findViewById(R.id.status_text);
-        enableButton = findViewById(R.id.enable_button);
-
-        checkNotificationAccess();
-
-        enableButton.setOnClickListener(v -> {
-            if (!isNotificationServiceEnabled()) {
-                requestNotificationAccess();
-            } else {
-                Toast.makeText(this, "Notification access already enabled!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        startNotificationService();
-    }
+    </application>
+</manifest>    }
 
     private void checkNotificationAccess() {
         if (isNotificationServiceEnabled()) {
