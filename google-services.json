@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "464562233475",
+    "project_id": "notificationcapture-32b5c",
+    "storage_bucket": "notificationcapture-32b5c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464562233475:android:d053b9a828548717bb3bb6",
+        "android_client_info": {
+          "package_name": "com.neeleshrajput55.notificationcapture"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5ya_-WAz-VZc-XXYnu6gEAAErzxcrKFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
